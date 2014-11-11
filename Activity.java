@@ -127,36 +127,23 @@ public class Activity extends ActionSupport {
 		this.moneyout = moneyout;
 	}
 	
-	public static void insert(){
+	public String Insert(){
 		DBconnection connection = new DBconnection();
 		conn = connection.getConnection();
 		
 		try{
-			 String sql = "update staff set wage='2200' where name = 'lucy'";// 更新数据的sql语句  
+			 String sql = "insert into activity values(" + "\"" + name + "\",\"" + date + "\",\"" + location + "\"," + money + "," + num + ")";// 更新数据的sql语句  
 	         st = (Statement) conn.createStatement();    //创建用于执行静态sql语句的Statement对象，st属局部变量    
 	         int count = st.executeUpdate(sql);// 执行更新操作的sql语句，返回更新数据的个
 	         System.out.println("staff表中更新 " + count + " 条数据");      //输出更新操作的处理结果    
 	         conn.close();   //关闭数据库连接 
 		}catch(SQLException e){
-			
+			System.out.println("数据库连接失败" + e.getMessage());
 		}
+		return SUCCESS;
 	}
 	
-	public String execute() {
-		   
-   		/*unLockNum=num;
-		unLockWeight=1.00;
-		for(int ii=0;ii<num;ii++){
-			if(lock[ii] == 1){
-				unLockNum=unLockNum-1;
-				unLockWeight=unLockWeight-weight[ii];
-			}
-		}
-		for(int iii=0;iii<num;iii++){
-			if(lock[iii] == 0){
-				weight[iii]=unLockWeight/unLockNum;
-			}
-		}*/
+	public String math() {
 		for (int i = 0; i < 4; i++) {
 			   moneyout[i] = weight[i] * money;
 		   }
