@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-	<package name="struts2" extends="struts-default">
+	<package name="AA" extends="struts-default">
 		<action name="details">
 		<result>details.jsp</result>
 		</action>
@@ -17,13 +17,13 @@
 		<action name="ChangeInformationResult" class="Action.Person">
 		<result>details.jsp</result>
 		</action>
-		<action name="InitialiseActivity" class="Action.Activity">
+		<action name="InitialiseActivity" class="Action.Activity" method="Insert">
 		<result>ActivityDetails.jsp</result>
 		</action>
 		<action name="Custom" class="Action.Activity">
 		<result>AA.jsp</result>
 		</action>
-		<action name="SetAA" class="Action.Activity">
+		<action name="SetAA" class="Action.Activity" method="math">
 		<result>Settlement.jsp</result>
 		</action>
 	</package>
