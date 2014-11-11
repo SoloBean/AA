@@ -23,7 +23,7 @@
 		<action name="Custom" class="Action.Activity">
 		<result>AA.jsp</result>
 		</action>
-		<action name="SetAA" class="Action.Activity" method="math">
+		<action name="SetAA" class="Action.Activity" method="InsertPerson">
 		<result>Settlement.jsp</result>
 		</action>
 	</package>
