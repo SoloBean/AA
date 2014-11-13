@@ -39,10 +39,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <%String money = request.getParameter("money");
       session.setAttribute("money",money);%>
     <%String num_e = request.getParameter("num"); %>
+    <%String Name_e = request.getParameter("name"); %>
     <%session.setAttribute("num_e", num_e) ;%>
     <%double moneyout = Double.parseDouble(money); %>
-    Money:<input type="text" name="money"/> 
     <%int num = Integer.parseInt(num_e);%>
+    <%out.print(num); %><br>
+    <input type="hidden" name="num" value=<%=num %>>
+    <input type="hidden" name="money" value=<%=moneyout %>>
+    <input type="hidden" name="name" value=<%=Name_e %>>
+    
     <%for (int i = 0; i < num; i++){%>
     	ID:<input type="text"  name="ID[<%=i %>]"/>
     	Weight:<input type="text"  name="weight[<%=i %>]"/>
