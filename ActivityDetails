@@ -44,7 +44,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <s:form action="SetAnActivity">
   <s:submit value="Edit" />
   </s:form>
-  <a href="Custom.action?num=${num}&money=${money}">Custom</a><br>
+  <a href="Custom.action?num=${num}&money=${money}&name=${name}">Custom</a><br>
   <a href="Default.jsp?num=${num}&money=${money}">Default</a><br>
   </body>
 </html>
