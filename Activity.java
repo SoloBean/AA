@@ -148,19 +148,26 @@ public class Activity extends ActionSupport {
 		conn = connection.getConnection();
 		
 		try{
+			System.out.println(num);
+			for (int i = 0; i < num; i++) {
+				   moneyout[i] = weight[i] * money;
+			 }
+			System.out.println("insert into person values(" + "ID" + ",\"" + name + "\"," + "weight" + ")");
 			for(int i = 0; i < num; i++){
-				String sql = "insert into person values(" + ID + "," + weight + ")";// 更新数据的sql语句  
+				String sql = "insert into person values(" + ID[i] + ",\"" + name + "\"," + weight[i] + ")";// 更新数据的sql语句  
 		        st = (Statement) conn.createStatement();    //创建用于执行静态sql语句的Statement对象，st属局部变量    
 		        int count = st.executeUpdate(sql);// 执行更新操作的sql语句，返回更新数据的个
 		        System.out.println("staff表中更新 " + count + " 条数据");      //输出更新操作的处理结果    
-		        conn.close();   //关闭数据库连接
 			}
+			conn.close();   //关闭数据库连接
 		}catch(SQLException e){
 			System.out.println("数据库加载失败" + e.getMessage());
 		}
-		for (int i = 0; i < 4; i++) {
-			   moneyout[i] = weight[i] * money;
-		   }
 		return SUCCESS;
 	}
+	
+	/*public static void main (String arg[]){
+		Activity ac = new Activity();
+		ac.InsertPerson();
+	}*/
 }
