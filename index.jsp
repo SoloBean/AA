@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.sql.*" pageEncoding="ISO-8859-1"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -32,5 +32,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</li>
 	</ul>
 	<!-- history of activities -->
+	<% Connection con = null;   
+	   Statement st = null; 
+        try {  
+            Class.forName("com.mysql.jdbc.Driver");  
+              
+            con = DriverManager.getConnection(  
+                    "jdbc:mysql://localhost:3306/aa", "root", "123456"); 
+              
+        } catch (Exception e) {  
+            System.out.println("数据库连接失败" + e.getMessage() );  
+        } %>
+    <% String sql = "select activityname from activity";
+       st = (Statement) con.createStatement();     
+              
+       ResultSet rs = st.executeQuery(sql);     
+       while (rs.next()) {
+       	  String name = rs.getString("activityname"); 
+       } 
+    %>
   </body>
 </html>
