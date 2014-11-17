@@ -42,14 +42,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               
         } catch (Exception e) {  
             System.out.println("数据库连接失败" + e.getMessage() );  
-        } %>
-    <% String sql = "select activityname from activity";
+        } 
+       String sql = "select activityname from activity";
        st = (Statement) con.createStatement();     
               
-       ResultSet rs = st.executeQuery(sql);     
+       ResultSet rs = st.executeQuery(sql);   
+       int i = 0;  
+       String []name = new String[50];
        while (rs.next()) {
-       	  String name = rs.getString("activityname"); 
+       	  name[i] = rs.getString("activityname");
+       	  i++; 
        } 
     %>
+    <% for (int j = 0; j <i; j++){%>
+    	<a href="history.jsp?name=<%=name[j]%>"><%=name[j] %></a><br>
+    <%} %>
   </body>
 </html>
