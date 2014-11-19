@@ -1,0 +1,48 @@
+0    INFO  [2014-11-18 14:34:10]  code: d6d0f1ae21ddf288bb3bde8a2668df7b
+4    DEBUG [2014-11-18 14:34:10]  Request:
+4    DEBUG [2014-11-18 14:34:10]  POSThttps://api.weibo.com/oauth2/access_token
+661  DEBUG [2014-11-18 14:34:11]  Response:
+662  DEBUG [2014-11-18 14:34:11]  https StatusCode:200
+662  DEBUG [2014-11-18 14:34:11]  Server:nginx/1.6.1
+662  DEBUG [2014-11-18 14:34:11]  Date:Tue, 18 Nov 2014 06:34:11 GMT
+662  DEBUG [2014-11-18 14:34:11]  Content-Type:text/plain;charset=UTF-8
+662  DEBUG [2014-11-18 14:34:11]  Content-Length:117
+662  DEBUG [2014-11-18 14:34:11]  Connection:keep-alive
+662  DEBUG [2014-11-18 14:34:11]  Pragma:No-cache
+662  DEBUG [2014-11-18 14:34:11]  Cache-Control:no-cache
+663  DEBUG [2014-11-18 14:34:11]  Expires:Thu, 01 Jan 1970 00:00:00 GMT
+663  DEBUG [2014-11-18 14:34:11]  Api-Server-IP:10.73.89.46
+666  DEBUG [2014-11-18 14:34:11]  {"access_token":"2.00Udn9ZD6GbMPEdba45518d23jYUSD","remind_in":"157679999","expires_in":157679999,"uid":"3272434244"}
+
+0    INFO  [2014-11-18 17:59:51]  code: 
+4    DEBUG [2014-11-18 17:59:51]  Request:
+4    DEBUG [2014-11-18 17:59:51]  POSThttps://api.weibo.com/oauth2/access_token
+555  DEBUG [2014-11-18 17:59:51]  Response:
+555  DEBUG [2014-11-18 17:59:51]  https StatusCode:400
+555  DEBUG [2014-11-18 17:59:51]  Server:nginx/1.2.0
+555  DEBUG [2014-11-18 17:59:51]  Date:Tue, 18 Nov 2014 09:59:52 GMT
+555  DEBUG [2014-11-18 17:59:51]  Transfer-Encoding:chunked
+555  DEBUG [2014-11-18 17:59:51]  Connection:keep-alive
+555  DEBUG [2014-11-18 17:59:51]  Pragma:No-cache
+555  DEBUG [2014-11-18 17:59:51]  Cache-Control:no-cache
+555  DEBUG [2014-11-18 17:59:51]  Expires:Thu, 01 Jan 1970 00:00:00 GMT
+556  DEBUG [2014-11-18 17:59:51]  Api-Server-IP:10.75.2.82
+558  WARN  [2014-11-18 17:59:51]  Going to buffer response body of large or unknown size. Using getResponseBodyAsStream instead is recommended.
+558  DEBUG [2014-11-18 17:59:51]  {"error":"invalid_grant","error_code":21325,"request":"/oauth2/access_token","error_uri":"/oauth2/access_token","error_description":"invalid authorization code:"}
+
+0    INFO  [2014-11-18 18:01:18]  code: 250dcf6e2139ae2fb8cd6671fadb0b37
+3    DEBUG [2014-11-18 18:01:18]  Request:
+3    DEBUG [2014-11-18 18:01:18]  POSThttps://api.weibo.com/oauth2/access_token
+545  DEBUG [2014-11-18 18:01:18]  Response:
+545  DEBUG [2014-11-18 18:01:18]  https StatusCode:200
+546  DEBUG [2014-11-18 18:01:18]  Server:nginx/1.6.1
+546  DEBUG [2014-11-18 18:01:18]  Date:Tue, 18 Nov 2014 10:01:18 GMT
+547  DEBUG [2014-11-18 18:01:18]  Content-Type:text/plain;charset=UTF-8
+547  DEBUG [2014-11-18 18:01:18]  Content-Length:111
+548  DEBUG [2014-11-18 18:01:18]  Connection:keep-alive
+548  DEBUG [2014-11-18 18:01:18]  Pragma:No-cache
+548  DEBUG [2014-11-18 18:01:18]  Cache-Control:no-cache
+549  DEBUG [2014-11-18 18:01:18]  Expires:Thu, 01 Jan 1970 00:00:00 GMT
+549  DEBUG [2014-11-18 18:01:18]  Api-Server-IP:10.75.25.114
+560  DEBUG [2014-11-18 18:01:18]  {"access_token":"2.00eGANdF6GbMPEa2ab62010egyRTeB","remind_in":"118721","expires_in":118721,"uid":"5160039940"}
+
