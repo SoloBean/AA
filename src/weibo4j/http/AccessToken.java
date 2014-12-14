@@ -84,7 +84,7 @@ public class AccessToken extends WeiboResponse implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return accessToken + "=" +uid ;
+		return accessToken + "=" + uid ;
 	}
 
 

@@ -8,11 +8,13 @@ import java.sql.Statement;
 
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import javax.mail.Session;
 
 import org.apache.struts2.dispatcher.SessionMap;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("serial")
@@ -23,6 +25,9 @@ public class Activity extends ActionSupport {
 	private String location;
 	private double money;
 	private String uid;
+	private int count;
+	
+	private String[] userid = new String[50];
 	
 	
 	private int num;
@@ -42,6 +47,18 @@ public class Activity extends ActionSupport {
     
     
 	
+	public int getCount() {
+		return count;
+	}
+	public void setCount(int count) {
+		this.count = count;
+	}
+	public String[] getUserid() {
+		return userid;
+	}
+	public void setUserid(String[] userid) {
+		this.userid = userid;
+	}
 	public String getUid() {
 		return uid;
 	}
@@ -129,15 +146,39 @@ public class Activity extends ActionSupport {
 	}
 	
 	public String Insert(){
+		
+		ActionContext ac=ActionContext.getContext();
+		Map<String, Object> session=ac.getSession();
+		session.put("name",name);
+		
 		DBconnection connection = new DBconnection();
 		conn = connection.getConnection(); 
 		
 		try{
-			String sql = "insert into activity values(" + "\"" + name + "\",\"" + date + "\",\"" + location + "\"," + money + "," + num + ",\""+uid + "\")";// 更新数据的sql语句  
+			System.out.println("insert into activity values(" + "\"" + name + "\",\"" + date + "\",\"" + location + "\"," + money + "," + num + ",\""+ uid + "\")");
+			String sql = "insert into activity values(" + "\"" + name + "\",\"" + date + "\",\"" + location + "\"," + money + "," + num + ",\""+ uid + "\")";// 更新数据的sql语句  
 	        st = (Statement) conn.createStatement();    //创建用于执行静态sql语句的Statement对象，st属局部变量    
 	        int count = st.executeUpdate(sql);// 执行更新操作的sql语句，返回更新数据的个
-	        System.out.println("staff表中更新 " + count + " 条数据");      //输出更新操作的处理结果    
-	        conn.close();   //关闭数据库连接 
+	        System.out.println("activity表中更新 " + count + " 条数据");      //输出更新操作的处理结果    
+	           //关闭数据库连接 
+		}catch(SQLException e){
+			System.out.println("数据库连接失败" + e.getMessage());
+		}
+		try{
+			for(int i = 0; i < count; i++){
+				if(!userid[i].equals("")){
+					if(!userid[i].equals("0")){
+					String position = name + userid[i];
+					//System.out.println("insert into person (userid, activityname, uid, invited) values (\"" + userid[i] + "\",\"" + name + "\",\"" + uid + "\"," + 2 +")");
+					String sql = "insert into person values (\"" + userid[i] + "\",\"" + name + "\"," + 0.0 + ",\"" + uid + "\"," + 2 + ",\"" + position + "\""  +")";
+					
+					st = (Statement) conn.createStatement();
+					int count = st.executeUpdate(sql);
+					System.out.println("person表中更新 " + count + " 条数据");
+					}
+				}
+			}
+			conn.close();
 		}catch(SQLException e){
 			System.out.println("数据库连接失败" + e.getMessage());
 		}
@@ -150,15 +191,17 @@ public class Activity extends ActionSupport {
 		
 		try{
 			System.out.println(num);
-			for (int i = 0; i < num; i++) {
-				   moneyout[i] = weight[i] * money;
-			 }
-			System.out.println("insert into person values(" + "ID" + ",\"" + name + "\"," + "weight" + ")");
+			
 			for(int i = 0; i < num; i++){
-				String sql = "insert into person values(" + ID[i] + ",\"" + name + "\"," + weight[i] + ")";// 更新数据的sql语句  
+				//String sql = "insert into person values(" + ID[i] + ",\"" + name + "\"," + weight[i] + ",\""+ uid + "\")";// 更新数据的sql语句
+				String position = ""; 
+				position = name + userid[i]; 
+				String sql = "update person set weight = " + weight[i] + " where position = " + "\"" + position + "\"";
 		        st = (Statement) conn.createStatement();    //创建用于执行静态sql语句的Statement对象，st属局部变量    
 		        int count = st.executeUpdate(sql);// 执行更新操作的sql语句，返回更新数据的个
-		        System.out.println("staff表中更新 " + count + " 条数据");      //输出更新操作的处理结果    
+		        System.out.println("person表中更新 " + count + " weight");      //输出更新操作的处理结果   
+		        System.out.println(sql);
+		
 			}
 			conn.close();   //关闭数据库连接
 		}catch(SQLException e){
@@ -167,8 +210,8 @@ public class Activity extends ActionSupport {
 		return SUCCESS;
 	}
 	
-	/*public static void main (String arg[]){
+	public static void main (String arg[]){
 		Activity ac = new Activity();
-		ac.InsertPerson();
-	}*/
+		ac.Insert();
+	}
 }

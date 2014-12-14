@@ -26,5 +26,11 @@
 		<action name="SetAA" class="Action.Activity" method="InsertPerson">
 		<result>Settlement.jsp</result>
 		</action>
+		<action name="welcome">
+		<result>welcome2.jsp</result>
+		</action>
+		<action name="returnwelcome">
+		<result>welcome2.jsp</result>
+		</action>
 	</package>
 </struts>    

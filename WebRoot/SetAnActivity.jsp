@@ -28,21 +28,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <body>
     Activity. <br>
     <s:form action="InitialiseActivity">
-    <table border="8" width="200px">
+    <table border="8" width="400px">
     	<tr>
-		    <td>Name:<s:textfield name="name" /></td>
+		    <td>活动名称:<s:textfield name="name" /></td>
 		</tr>
 		<tr>
-		    <td>Date: <s:textfield name="date" /></td>
+		    <td>时间: <s:textfield name="date" /></td>
 		</tr>
 		<tr>
-		    <td>Location: <s:textfield name="location" /></td>
+		    <td>地点: <s:textfield name="location" /></td>
 		</tr>
 		<tr>
-		    <td>Money: <s:textfield name="money" /></td>
+		    <td>钱: <s:textfield name="money" /></td>
 		</tr>
 		<tr>
-		    <td>Amount: <s:textfield name="num" /></td>
+		    <td>人数: <s:textfield name="num" /></td>
 		</tr>
     </table>
     <%String uid = (String)session.getAttribute("uid"); %>
@@ -53,14 +53,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
      String userid[] = new String[50];
      String name[] = new String[50];
      
+     for(int k = 0; k < 50 ; k++){
+	 	userid[k] = "";
+	 	name[k] = "";
+	 }     
      int i = 0;
      for(User s : fm.getFriendsChainFollowers("5377677980").getUsers()){
 			userid[i] = s.toString().substring(0, s.toString().lastIndexOf("="));
 			name[i] = s.toString().substring(s.toString().lastIndexOf("=")+1, s.toString().length());
 			//out.println(userid[i]);
-			//out.println(name[i]);
+			//=out.println(name[i]);
 			i++;
-	 }%>
+	 }
+	 for(int j = 0; j < i; j++) {
+	 out.println(name[j]);%><input type="radio" name="userid[<%=j%>]" value="<%=name[j]%>" />邀请
+	                        <input type="radio" name="userid[<%=j%>]" value="<%="0"%>" checked/>不邀请 <br>
+	 <%} %> 
+	 <input type="hidden" name="count" value="<%=i%>"/>
     	<s:submit />
     </s:form>
   </body>

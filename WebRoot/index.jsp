@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.sql.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.sql.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,7 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    Welcome to AA page. <br>
-    <a href="Login.jsp">Login</a>
+    <h3>欢迎. <br></h3>
+    <a href="Login.jsp">登陆</a>
   </body>
 </html>

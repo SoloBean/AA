@@ -1,4 +1,5 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.sql.*,org.apache.struts2.ServletActionContext" pageEncoding="utf-8"%>
+<%@page import="java.util.*,com.opensymphony.xwork2.util.*"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -24,7 +25,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    Custom Page. <br>
     <s:form action="SetAA">
     <%-- <%String num_e = request.getParameter("num"); %>
     <%out.print(num_e); %> --%>
@@ -38,19 +38,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     %>  --%>
     <%String money = request.getParameter("money");
       session.setAttribute("money",money);%>
+      
+      
     <%String num_e = request.getParameter("num"); %>
-    <%String Name_e = request.getParameter("name"); %>
+    
+    
+    <%String Name_e=new String(request.getParameter("name").getBytes("ISO-8859-1"),"utf-8"); %>
+    <%session.setAttribute("name", Name_e) ;%>
+    
     <%session.setAttribute("num_e", num_e) ;%>
     <%double moneyout = Double.parseDouble(money); %>
     <%int num = Integer.parseInt(num_e);%>
-    <%out.print(num); %><br>
+    <%String uid = (String)session.getAttribute("uid"); %>
     <input type="hidden" name="num" value=<%=num %>>
     <input type="hidden" name="money" value=<%=moneyout %>>
     <input type="hidden" name="name" value=<%=Name_e %>>
+    <input type="hidden" name="uid" value="<%=uid%>">
     
-    <%for (int i = 0; i < num; i++){%>
-    	ID:<input type="text"  name="ID[<%=i %>]"/>
-    	Weight:<input type="text"  name="weight[<%=i %>]"/>
+    
+    
+    <%Connection con = null;
+      Statement st = null;
+      try {  
+          Class.forName("com.mysql.jdbc.Driver");  
+            
+          con = DriverManager.getConnection(  
+                  "jdbc:mysql://localhost:3306/aa", "root", "123456"); 
+            
+      } catch (Exception e) {  
+          System.out.println("数据库连接失败" + e.getMessage() );  
+      } 
+     String sql = "select * from person where activityname = \"" + Name_e + "\"";
+     st = (Statement) con.createStatement();     
+            
+     ResultSet rs = st.executeQuery(sql);  
+     String userid[] = new String[num];
+     int i = 0;
+     while (rs.next()){
+    	 userid[i] = rs.getString("userid");
+    	 i++;
+     }
+      %>
+    <%for (int j = 0; j < num; j++){%>
+    	名字:  <%out.println(userid[j]);%><input type="hidden" name="userid[<%=j%>]" value="<%=userid[j]%>"/>
+    	权重:  <input type="text"  name="weight[<%=j %>]"/>
     	<%-- <form name="form" action="locker"> 
 			LOCK:<input type="radio" name="lock[<%=i %>]" value=0><br> 
 			UNLOCK:<input type="radio" name="lock[<%=i %>]" value=1 checked><br> 

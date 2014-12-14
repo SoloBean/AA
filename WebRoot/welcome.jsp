@@ -1,6 +1,6 @@
-<%@ page language="java" import="java.sql.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.sql.*" pageEncoding="utf-8"%>
 <%@ page import=" weibo4j.*, weibo4j.model.WeiboException, weibo4j.util.BareBonesBrowserLaunch" %>
-<%@ page import="java.lang.String, weibo4j.model.User, weibo4j.Friendships" %>
+<%@ page import="java.lang.String, weibo4j.Friendships, weibo4j.model.User, weibo4j.Users" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -49,19 +49,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	String uid = temp.substring(temp.lastIndexOf("=")+1,temp.length()); 
 	session.setAttribute("uid",uid);
 	
-	Friendships fm = new Friendships(token);
-	fm.createFriendshipsById("5377677980");
+	
+	/* fm.createFriendshipsById("5377677980"); */
 	
 	%>
     <ul class="list-group">
-				<li class="list-group-item"><a href="details.action"><b>View Personal Information</b>
+				<li class="list-group-item"><a href="details.action"><b>个人信息</b>
 				</a>
 				</li>
-				<li class="list-group-item"><a href="SetAnActivity.action"><b>Set an Activity</b>
+				<li class="list-group-item"><a href="SetAnActivity.action"><b>创建活动</b>
 				</a>
 				</li>
 	</ul>
 	<!-- history of activities -->
+	<h4>由我创建:</h4>
 	<% Connection con = null;   
 	   Statement st = null; 
        try {  
@@ -88,5 +89,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <% for (int j = 0; j <i; j++){%>
     	<a href="history.jsp?name=<%=name[j]%>"><%=name[j] %></a><br>
     <%} %>
+    
   </body>
 </html>

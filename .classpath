@@ -21,12 +21,12 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/Users/zhr/Downloads/mysql-connector-java-5.0.8-bin.jar"/>
-	<classpathentry kind="lib" path="/weibo4j-oauth2/lib/commons-codec.jar"/>
-	<classpathentry kind="lib" path="/weibo4j-oauth2/lib/commons-httpclient-3.1.jar"/>
-	<classpathentry kind="lib" path="/weibo4j-oauth2/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="/weibo4j-oauth2/lib/jackson-all-1.8.5.jar"/>
-	<classpathentry kind="lib" path="/weibo4j-oauth2/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="C:/Users/zhr/Downloads/jasper-compiler.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-codec.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-httpclient-3.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/jackson-all-1.8.5.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/log4j-1.2.16.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
