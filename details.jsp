@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.sql.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -25,18 +25,55 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   
   <body>
     Information<br>
+    <%String uid = (String)session.getAttribute("uid"); 
+      Connection con = null;
+      Statement st = null;
+      try {  
+            Class.forName("com.mysql.jdbc.Driver");  
+              
+            con = DriverManager.getConnection(  
+                    "jdbc:mysql://localhost:3306/aa", "root", "123456"); 
+              
+        } catch (Exception e) {  
+            System.out.println("数据库连接失败" + e.getMessage() );  
+        } 
+       String sql = "select * from user where uid = " + uid;
+       st = (Statement) con.createStatement();     
+       String name = null;
+       String sex = null;
+       int age = 0; 
+       String tel = null;
+       ResultSet rs = st.executeQuery(sql);    
+       while (rs.next()) {
+       	  name = rs.getString("name");
+       	  sex = rs.getString("sex");
+       	  age = rs.getInt("age");
+       	  tel = rs.getString("tel");
+       } 
+       con.close();
+       
+       session.setAttribute("hostname",name);
+       session.setAttribute("sex",sex);
+       session.setAttribute("age",age);
+       session.setAttribute("tel",tel);
+       
+       
+       %>
     <table>
     	<tr>
-    		<td>Name: <s:property value="name" /></td>
+    		<td>ID: <%out.print(uid); %></td>
     	</tr>
     	<tr>
-    		<td>Sex: <s:property value="sex" /></td>
+    		<td>Name: <%out.print(name); %></td>
     	</tr>
     	<tr>
-    		<td>Age: <s:property value="age" /></td>
+    		<td>Sex: <%out.print(sex); %></td>
     	</tr>
     	<tr>
-    		<td>Tel: <s:property value="tel" /></td>
+    		<td>Age: <%out.print(age); %></td>
+    	</tr>
+    	<tr>
+    		<td>Tel: <%out.print(tel); %></td>
     	</tr>
     </table>
     <a href="ChangeInformation.action"><b>Change Information</b></a>
