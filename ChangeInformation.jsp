@@ -24,20 +24,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <% String uid = (String)session.getAttribute("uid"); 
+  	 String name = (String)session.getAttribute("hostname");
+     String sex = (String)session.getAttribute("sex");
+     int age = (Integer)session.getAttribute("age"); 
+     String tel = (String)session.getAttribute("tel");
+  %>
     This is my JSP page. <br>
     <s:form action="ChangeInformationResult.action">
     	<table border="8" width="200px">
     	<tr>
-		    <td>ID: <s:textfield name="ID" /></td>
-		</tr>
+    		<td>ID: <%out.print(uid); %></td>
+    	</tr>
     	<tr>
-		    <td>Name:<s:textfield name="name" /></td>
+    		<td>Name: <%out.print(name); %></td>
+    	</tr>
+		<tr>
+		    <td>Sex: <s:textfield name="sex"/></td>
 		</tr>
 		<tr>
-		    <td>Sex: <s:textfield name="sex" /></td>
+		    <td>Age: <s:textfield name="age"/></td>
 		</tr>
 		<tr>
-		    <td>Age: <s:textfield name="age" /></td>
+		    <td>Tel: <s:textfield name="tel"/></td>
 		</tr>
     </table>
 	<s:submit />
