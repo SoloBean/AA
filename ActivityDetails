@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" import="java.sql.*,org.apache.struts2.ServletActionContext" pageEncoding="utf-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%
 String path = request.getContextPath();
@@ -20,31 +20,71 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	<style type="text/css">
+  body {
+	text-align: center;
+	background-color: #0CF;
+	font-family: "Microsoft YaHei UI";
+	font-weight: bold;
+}
+
+table.imagetable {
+	font-family: verdana, arial, sans-serif;
+	font-size: 18px;
+	color: #333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.imagetable th {
+	background: #b5cfd2 url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+	font-style: italic;
+	font-family: "Microsoft YaHei UI";
+	text-align: left;
+}
+table.imagetable td {
+	background: #dcddc0 url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+	text-align: left;
+	font-style: italic;
+}
+  .activity {
+	font-size: 24px;
+}
+    </style>
 
   </head>
   
   <body>
-  <table border="8" width="200px">
+  
+  <table width="265" align="center" class="imagetable" style="height: 410px; ">
   	<tr>
-  		<td>Name: <s:property value="name" /></td>
+  		<th>名称: <s:property value="name" /></th>
   	</tr>
   	<tr>
-  		<td>Date: <s:property value="date" /></td>
+  		<td>日期: <s:property value="date" /></td>
   	</tr>
   	<tr>
-  		<td>Location: <s:property value="location" /></td>
+  		<th>地点: <s:property value="location" /></th>
   	</tr>
   	<tr>
-  		<td>Money: <s:property value="money" /></td>
+  		<td>钱: <s:property value="money" /></td>
   	</tr>
   	<tr>
-  		<td>Amount: <s:property value="num" /></td>
+  		<th>人数: <s:property value="num" /></th>
   	</tr>
   </table>
-  <s:form action="SetAnActivity">
-  <s:submit value="Edit" />
-  </s:form>
-  <a href="Custom.action?num=${num}&money=${money}&name=${name}">Custom</a><br>
-  <a href="Default.jsp?num=${num}&money=${money}">Default</a><br>
+  
+
+  <a href="Custom.action?num=${num}&money=${money}&name=${name}">自定义（权重）</a><br>
+  <a href="Custommoney.action?num=${num}&money=${money}&name=${name}">自定义（钱数）</a><br>
+  <a href="Default.jsp?num=${num}&money=${money}&name=${name}">默认</a><br>
   </body>
 </html>
